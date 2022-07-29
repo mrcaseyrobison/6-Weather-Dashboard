@@ -38,3 +38,12 @@ function writeHistory(search) {
     localStorage.setItem('search-history', JSON.stringify(userSearchHistory));
     displaySearchHistory();
 }
+
+// Function to retrieve from local storage
+function getSearchHistory() {
+    const searchArchive = localStorage.getItem('search-history');
+    if (searchArchive) {
+        userSearchHistory = JSON.parse(searchArchive);
+    }
+    displaySearchHistory();
+}
