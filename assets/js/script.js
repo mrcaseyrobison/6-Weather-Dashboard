@@ -13,7 +13,7 @@ dayjs.extend(window.dayjs_plugin_utc);
 dayjs.extend(window.dayjs_plugin_timezone);
 
 // Display past searches in a list
-(displaySearchHistory) => {
+function displaySearchHistory() {
     searchHistory.innerHTML ="";
 
 // For loop to list array of user search history
@@ -28,3 +28,13 @@ for (let i = userSearchHistory.length; i >= 0; i--) {
     }
 }
 
+// Add search history to local storage and to display it
+function writeHistory(search) {
+    if(userSearchHistory.indexOf(search) !== -1){
+        return;
+    }
+    userSearchHistory.push(search);
+    
+    localStorage.setItem('search-history', JSON.stringify(userSearchHistory));
+    displaySearchHistory();
+}
