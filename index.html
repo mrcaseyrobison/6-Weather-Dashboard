@@ -6,14 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <!--Bootstrap-->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
-     <!-- Font Awesome CSS Icons -->
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
      <!--Link to local styling sheet-->
      <link rel="stylesheet" href="./assets/css/style.css">
     <title>My Weather Dashboard</title>
 </head>
 <body>
-    
+    <nav class="navbar">
+        <h1>My Weather Dashboard</h1>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+        <div class="col-4 pb-3">
+            <h3 class="mt-1 h3 form-label">Search for a City</h3>
+            <form id="search-form" class="form">
+                <div class="form-inline">
+                    <div class="input-group">
+                        <input class="form-input" type="text" id="search-input" placeholder="Enter a City Here"/>
+                        <div class="input-group append">
+                            <button type="submit" class="btn search-button" id="search-button"></button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="list-group" id="history"></div>
+        </div>
+        </aside>
+
+        <div class="col-9">
+            <section class="mt-3" id="today"></section>
+            <section class="row mt-3" id="forecast"></section>
+        </div>
+    </div>
      <!--jQuery JS-->
      <script src="https://code.jquery.com/jquery.js"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
