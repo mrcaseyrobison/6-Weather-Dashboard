@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <!--Bootstrap-->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
-     <!--Link to local styling sheet-->
-     <link rel="stylesheet" href="./assets/css/style.css">
+    <!--Bootstrap-->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+    <!--Link to local styling sheet-->
+    <link rel="stylesheet" href="./assets/css/style.css">
     <title>My Weather Dashboard</title>
 </head>
+
 <body>
     <nav class="navbar">
         <h1>My Weather Dashboard</h1>
@@ -17,31 +20,36 @@
 
     <div class="container">
         <div class="row">
-        <div class="col-4 pb-3">
-            <h3 class="mt-1 h3 form-label">Search for a City</h3>
-            <form id="search-form" class="form">
-                <div class="form-inline">
-                    <div class="input-group">
-                        <input class="form-input" type="text" id="search-input" placeholder="Enter a City Here"/>
-                        <div class="input-group append">
-                            <button type="submit" class="btn search-button" id="search-button">Submit</button>
+            <div class="col-4 pb-3">
+                <h3 class="mt-1 h3 form-label">Search for a City</h3>
+                <form id="search-form" class="form">
+                    <div class="form-inline">
+                        <div class="input-group">
+                            <input class="form-input" type="text" id="search-input" placeholder="Enter a City Here" />
+                            <div class="input-group append">
+                                <button type="submit" class="btn search-button" id="search-button">Submit</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </form>
-            <div class="list-group" id="history"></div>
-        </div>
-        </aside>
+                </form>
+                <div class="list-group" id="history"></div>
+            </div>
+            </aside>
 
-        <div class="col-9">
-            <section class="mt-3" id="today"></section>
-            <section class="row mt-3" id="forecast"></section>
+            <div class="col-9">
+                <section class="mt-3" id="today"></section>
+                <section class="row mt-3" id="forecast"></section>
+            </div>
         </div>
-    </div>
-     <!--jQuery JS-->
-     <script src="https://code.jquery.com/jquery.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
-     <!--Code to local JS file-->
-     <script src="./assets/js/script.js"></script>
+        <!--jQuery JS-->
+        <script src="https://code.jquery.com/jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+        <!--Code to local JS file-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.4/dayjs.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.4/plugin/timezone.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.4/plugin/utc.min.js"></script>
+        <!--Use DayJS to use live timezone-->
+        <script src="./assets/js/script.js"></script>
 </body>
+
 </html>

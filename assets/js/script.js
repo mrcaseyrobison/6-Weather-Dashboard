@@ -8,6 +8,10 @@ const todayWeather = document.getElementById("today");
 const weatherForecast = document.getElementById("forecast");
 const searchHistory = document.getElementById("search-history");
 
+// Use Day.JS to render time zones
+dayjs.extend(window.dayjs_plugin_utc);
+dayjs.extend(window.dayjs_plugin_timezone);
+
 // Display past searches in a list
 (displaySearchHistory) => {
     searchHistory.innerHTML ="";
@@ -23,3 +27,4 @@ for (let i = userSearchHistory.length; i >= 0; i--) {
     searchHistory.append[btn];
     }
 }
+
