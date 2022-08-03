@@ -17,30 +17,29 @@
 </head>
 
 <body>
-    <header class="jumbotron bg-primary text-white text-center p-3">
-        <h1 class="font-weight-bolder">Weather Dashboard</h1>
-    </header>
+    <nav class="navbar bg-primary bg-gradient border-bottom border-2 border-dark">
+        <div class="col-12 fs-1 text-white text-center">My Weather Dashboard</div>
+    </nav>
     <div class="container-fluid">
-        <div class="row">
-            <aside class="card col-3 mb-3 ml-4">
-                <div class="card-body">
-                    <h5 class="card-title">Search for a City:</h5>
-                    <input type="text" class="form-control" id="searchCity" placeholder="Enter City"
-                        style="margin-bottom:10px">
-                    <button type="submit" href="#" class="btn btn-primary btn-block" id="submitSearch">Search</button>
+        <div class="row align-content-center">
+            <aside class="card col-3 mt-3 mb-3 mx-4 bg-light">
+                <div class="card-body bg-light">
+                    <h5 class="card-title text-center">Search for a City</h5>
+                    <input type="text" class="form-control my-3" id="searchCity" placeholder="Enter City">
+                    <button type="submit" href="#" class="col-12 btn btn-success btn-block" id="submitSearch">Search</button>
                     <hr>
-                    <h5 class="card-title">Recent Searches</h5>
+                    <h5 class="card-title text-center">Recent Searches</h5>
                     <div id="history"></div>
                     <!-- Recently Searched City Buttons Display Here -->
-                    <button type="submit" class="btn btn-primary btn-block mt-2" id="clearSearch">Clear Search
+                    <button type="submit" class="col-12 btn btn-danger btn-block mt-2" id="clearSearch">Clear Search
                         History</button>
                 </div>
             </aside>
-            <div class="col-8 mb-3 text-center">
+            <div class="col-8 my-3 text-center align-content-center">
                 <!-- Current Weather Displays Here -->
                 <section id="current-weather"></section>
                 <!-- Five Day Forecast Displays Here -->
-                <section class="row" id="forecast-weather"></section>
+                <section class="row align-content-center" id="forecast-weather"></section>
             </div>
         </div>
     </div>

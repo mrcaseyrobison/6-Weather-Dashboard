@@ -127,8 +127,8 @@ function displayForecast(forecast, timezone) {
     var forecastStart = dayjs().tz(timezone).add(1, "day").startOf("day").unix();
     var forecastEnd = dayjs().tz(timezone).add(6, "day").startOf("day").unix();
 
-    var fiveDayHeaderEl = document.createElement("h4");
-    fiveDayHeaderEl.setAttribute("class", "col-12");
+    var fiveDayHeaderEl = document.createElement("h3");
+    fiveDayHeaderEl.setAttribute("class", "col-12 mb-4");
     weatherForecast.innerHTML = "";
     fiveDayHeaderEl.textContent = "5-Day Forecast";
     weatherForecast.append(fiveDayHeaderEl);
@@ -153,7 +153,7 @@ function displayForecastCard(forecast, timezone) {
     var col = document.createElement("div");
     var card = document.createElement("div");
     var cardBody = document.createElement("div");
-    var cardTitle = document.createElement("h4");
+    var cardTitle = document.createElement("h3");
     var weatherIcon = document.createElement("img");
     var tempEl = document.createElement("p");
     var windEl = document.createElement("p");
@@ -164,7 +164,7 @@ function displayForecastCard(forecast, timezone) {
     cardBody.append(cardTitle, weatherIcon, tempEl, windEl, humidityEl);
 
     col.setAttribute("class", "col-md forecast-card");
-    card.setAttribute("class", "card bg-primary h-100 text-white");
+    card.setAttribute("class", "card border border-2 border-dark bg-info text-black h-110");
     cardBody.setAttribute("class", "card-bdy p-2");
     cardTitle.setAttribute("class", "card-text");
     tempEl.setAttribute('class', 'card-text');
@@ -199,7 +199,7 @@ function displaySearchHistory() {
     for (var i = userSearchHistory.length -1; i>= 0; i--) {
         var buttonItem = document.createElement('button');
         buttonItem.setAttribute('type','button');
-        buttonItem.setAttribute('class', 'btn btn-outline-info btn-block btn-history');
+        buttonItem.setAttribute('class', 'col-12 btn bg-info text-black border border-2 my-1 border-dark btn-history');
         buttonItem.setAttribute('data-search', userSearchHistory[i]);
         buttonItem.textContent = userSearchHistory[i];
         searchHistory.append(buttonItem);
