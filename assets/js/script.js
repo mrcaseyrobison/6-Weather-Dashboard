@@ -1,7 +1,9 @@
 // Global Variables
 const userSearchHistory = [];
+
 const openWeatherAPI = "https://api.openweathermap.org";
 const openWeatherAPIKey = "93599ab684518639511e1336572d35c0";
+
 const userSearch = document.getElementById("search-form");
 const userInput = document.getElementById("search-input");
 const todayWeather = document.getElementById("today");
@@ -18,13 +20,13 @@ function displaySearchHistory() {
 
 // For loop to list array of user search history
 for (let i = userSearchHistory.length; i >= 0; i--) {
-    const btn = document.createElement('button');
-    btn.setAttribute("type", "button");
-    btn.setAttribute("today forecast");
-    btn.classList.add('history-btn');
-    btn.setAttribute('data-search', searchHistory[i]);
-    btn.textContent = userSearchHistory[i];
-    searchHistory.append[btn];
+    const historyBtn = document.createElement('button');
+    historyBtn.setAttribute("type", "button");
+    historyBtn.setAttribute("today forecast");
+    historyBtn.classList.add('history-btn');
+    historyBtn.setAttribute('data-search', searchHistory[i]);
+    historyBtn.textContent = userSearchHistory[i];
+    searchHistory.append[historyBtn];
     }
 }
 
@@ -46,4 +48,33 @@ function getSearchHistory() {
         userSearchHistory = JSON.parse(searchArchive);
     }
     displaySearchHistory();
+}
+
+// Fetch Latitude & Longitude from weatherAPI
+function fetchCoords(search) {
+    const apiURL = `${openWeatherAPI}/geo/1.0/direct?q=${search}&appid=${openWeatherAPIKey}`;
+    fetch(apiURL)
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) {
+        if (!data[0]) {
+            alert('You must choose a real city!');
+        } else {
+            let cityData = data[0];
+            let cityName = cityData.name;
+            let lat = cityData.lat;
+            let lon = cityData.lon;
+            let cityCountry = cityData.country;
+            writeHistory(search);
+            fetchWeather(cityName, cityCountry, lat, long);
+        }
+    })
+}
+
+// Seach on button click 
+function citySearch(event) {
+    let search = userInput.value.trim();
+    fetchCoords(search);
+    userInput.value = '';
 }
