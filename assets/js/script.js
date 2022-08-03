@@ -4,11 +4,12 @@ const userSearchHistory = [];
 const openWeatherAPI = "https://api.openweathermap.org";
 const openWeatherAPIKey = "93599ab684518639511e1336572d35c0";
 
-const userSearch = document.getElementById("search-form");
+const userSearch = document.getElementById("search-button");
 const userInput = document.getElementById("search-input");
 const todayWeather = document.getElementById("today");
 const weatherForecast = document.getElementById("forecast");
 const searchHistory = document.getElementById("search-history");
+const clearSearchHistory = document.getElementById("clear-search")
 
 // Use Day.JS to render time zones
 dayjs.extend(window.dayjs_plugin_utc);
@@ -29,7 +30,7 @@ function displaySearchHistory() {
 for (let i = userSearchHistory.length; i >= 0; i--) {
     const historyBtn = document.createElement('button');
     historyBtn.setAttribute("type", "button");
-    historyBtn.setAttribute("today forecast");
+    historyBtn.setAttribute("today");
     historyBtn.classList.add('history-btn');
     historyBtn.setAttribute('data-search', searchHistory[i]);
     historyBtn.textContent = userSearchHistory[i];
@@ -197,4 +198,31 @@ function renderTodayWeather(cityName, cityCountry, weather, timezone) {
         weatherForecast.append(col);
     }
 
-    
+    // Function to recall data from previous searches
+    function previousSearch(event) {
+        if (!event.target.matches('.btn-history')) {
+            return;
+        }
+        let btn = event.target;
+        let search = btn.getAttribute('data-search');
+        fetchCoords(search);
+    }
+
+    // Button to clear previous search history
+    function clearHistory(event) {
+        event.preventDefault();
+        userSearchHistory = localStorage.getItem('search-history');
+        userSearchHistory = [];
+        localStorage.setItem('search-history', JSON.stringify(userSearchHistory));
+        searchHistory.innerHTML = "";
+        todayWeather.innerHTML = "";
+        weatherForecast.innerHTML= "";
+        return;
+    }
+
+    getSearchHistory();
+
+    userSearch.addEventListener('click', citySearch);
+    searchHistory.addEventListener('click', previousSearch);
+    clearSearchHistory.addEventListener('click', clearHistory);
+
