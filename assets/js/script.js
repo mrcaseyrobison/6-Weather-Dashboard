@@ -27,26 +27,6 @@ function citySearch(event) {
     userInput.value = "";
 }
 
-// Save search history to local storage and to display it
-function writeHistory(search) {
-    if (userSearchHistory.indexOf(search) !== -1) {
-        return;
-    }
-    userSearchHistory.push(search);
-
-    localStorage.setItem("search-history", JSON.stringify(userSearchHistory));
-    displaySearchHistory();
-}
-
-// Function to retrieve from local storage
-function getSearchHistory() {
-    var searchArchive = localStorage.getItem("search-history");
-    if (searchArchive) {
-        userSearchHistory = JSON.parse(searchArchive);
-    }
-    displaySearchHistory();
-}
-
 // Fetch Latitude & Longitude from weatherAPI
 function fetchCoords(search) {
     var apiURL = `${openWeatherAPI}/geo/1.0/direct?q=${search}&appid=${openWeatherAPIKey}`;
@@ -183,7 +163,7 @@ function displayForecastCard(forecast, timezone) {
     card.append(cardBody);
     cardBody.append(cardTitle, weatherIcon, tempEl, windEl, humidityEl);
 
-    col.setAttribute("class", "ol-md no gutters forecast-card");
+    col.setAttribute("class", "col-md forecast-card");
     card.setAttribute("class", "card bg-primary h-100 text-white");
     cardBody.setAttribute("class", "card-bdy p-2");
     cardTitle.setAttribute("class", "card-text");
@@ -201,20 +181,38 @@ function displayForecastCard(forecast, timezone) {
     weatherForecast.append(col);
 }
 
+// Save search history to local storage
+function writeHistory(search) {
+    if (userSearchHistory.indexOf(search) !== -1) {
+        return;
+    }
+    userSearchHistory.push(search);
+    localStorage.setItem("search-history", JSON.stringify(userSearchHistory));
+    displaySearchHistory();
+}
+
 // Display past searches in a list
 function displaySearchHistory() {
-    searchHistory.innerHTML = "";
+    searchHistory.innerHTML = '';
 
     // For loop to list array of user search history
-    for (var i = searchHistory.length; i >= 0; i--) {
-        var historyBtn = document.createElement("button");
-        historyBtn.setAttribute("type", "button");
-        historyBtn.setAttribute("today");
-        historyBtn.classList.add("history-btn");
-        historyBtn.setAttribute("data-search", searchHistory[i]);
-        historyBtn.textContent = userSearchHistory[i];
-        searchHistory.append[historyBtn];
+    for (var i = userSearchHistory.length -1; i>= 0; i--) {
+        var buttonItem = document.createElement('button');
+        buttonItem.setAttribute('type','button');
+        buttonItem.setAttribute('class', 'btn btn-outline-info btn-block btn-history');
+        buttonItem.setAttribute('data-search', userSearchHistory[i]);
+        buttonItem.textContent = userSearchHistory[i];
+        searchHistory.append(buttonItem);
+      }
     }
+
+// Function to retrieve from local storage
+function getSearchHistory() {
+    var userSearchHistory = localStorage.getItem("search-history");
+    if (userSearchHistory) {
+        userSearchHistory = JSON.parse(userSearchHistory);
+    }
+    displaySearchHistory();
 }
 
 // Function to recall data from previous searches
