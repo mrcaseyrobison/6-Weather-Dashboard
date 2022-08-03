@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,58 +15,47 @@
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>My Weather Dashboard</title>
 </head>
+
 <body>
     <header class="jumbotron bg-primary text-white text-center p-3">
         <h1 class="font-weight-bolder">Weather Dashboard</h1>
     </header>
     <div class="container-fluid">
-      <div class="row">
-        <aside class="card col-3 mb-3 ml-4">
-          <div class="card-body">
-            <h5 class="card-title">Search for a City:</h5>
-            <input type="text" class="form-control" id="searchCity" placeholder="Enter City" style="margin-bottom:10px">
-            <button type="submit" href="#" class="btn btn-primary btn-block" id="submitSearch">Search</button>
-            <hr>
-            <h5 class="card-title">Recent Searches</h5>
-            <div id="history"></div>
-              <!-- Recently Searched City Buttons Display Here -->
-              <button type="submit" class="btn btn-primary btn-block mt-2" id="clearSearch">Clear Search History</button>
-          </div>
-        </aside>
-        <div class="col-8 mb-3 text-center">
-          <!-- Current Weather Displays Here -->
-          <section id="current-weather"></section>
-          <!-- Five Day Forecast Displays Here -->
-          <section class="row" id="forecast-weather"></section>
+        <div class="row">
+            <aside class="card col-3 mb-3 ml-4">
+                <div class="card-body">
+                    <h5 class="card-title">Search for a City:</h5>
+                    <input type="text" class="form-control" id="searchCity" placeholder="Enter City"
+                        style="margin-bottom:10px">
+                    <button type="submit" href="#" class="btn btn-primary btn-block" id="submitSearch">Search</button>
+                    <hr>
+                    <h5 class="card-title">Recent Searches</h5>
+                    <div id="history"></div>
+                    <!-- Recently Searched City Buttons Display Here -->
+                    <button type="submit" class="btn btn-primary btn-block mt-2" id="clearSearch">Clear Search
+                        History</button>
+                </div>
+            </aside>
+            <div class="col-8 mb-3 text-center">
+                <!-- Current Weather Displays Here -->
+                <section id="current-weather"></section>
+                <!-- Five Day Forecast Displays Here -->
+                <section class="row" id="forecast-weather"></section>
+            </div>
         </div>
-        
-
-        
-      </div>
     </div>
 
 
     <!-- JQuery/Bootstrap JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Link day.js to help format dates -->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js"
-      integrity="sha512-0fcCRl828lBlrSCa8QJY51mtNqTcHxabaXVLPgw/jPA5Nutujh6CbTdDgRzl9aSPYW/uuE7c4SffFUQFBAy6lg=="
-      crossorigin="anonymous"
-    ></script>
-    <script 
-      src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/plugin/utc.min.js" 
-      integrity="sha512-m00bfmYnAl3plEBlQfeQUhw/U2uvmw29V2+jxSWpAjankMWS+zAsjezbKWDEJNXqWq9o9qQZSOiA2RKDpa4D5w==" 
-      crossorigin="anonymous"
-    ></script>
-    <script 
-      src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/plugin/timezone.min.js" 
-      integrity="sha512-pslqxxHAYPCxaSeFSmXXxDkLejD5dbFVC66aiVq0z4v7VTJBU+wqcG1OpNh4p3MjS2D6NCwz/H2QmSc7dXxryg==" 
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/plugin/utc.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/plugin/timezone.min.js"></script>
     <!-- Customer JavaScript -->
     <script src="./assets/js/script.js"></script>
 </body>
+
 </html>
