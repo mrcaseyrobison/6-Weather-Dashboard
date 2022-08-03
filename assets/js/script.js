@@ -30,6 +30,13 @@ for (let i = userSearchHistory.length; i >= 0; i--) {
     }
 }
 
+// Search on button click 
+function citySearch(event) {
+    let search = userInput.value.trim();
+    fetchCoords(search);
+    userInput.value = '';
+}
+
 // Add search history to local storage and to display it
 function writeHistory(search) {
     if(userSearchHistory.indexOf(search) !== -1){
@@ -72,9 +79,23 @@ function fetchCoords(search) {
     })
 }
 
-// Seach on button click 
-function citySearch(event) {
-    let search = userInput.value.trim();
-    fetchCoords(search);
-    userInput.value = '';
+// Function to fetch weather data from weatherAPI
+function fetchWeather (cityName, cityCountry, lat, lon) {
+    const weather = `${openWeatherAPI}/data/2.5/onecall?lat=${lat}&long=${lon}&units=imperial&exclude=minutely,hourly&appid=${openWeatherAPIKey}`;
+    fetch(weather)
+    .then(function(response) {
+        return response.json();
+    })
+    .then (function(data) {
+        displayData(cityName, cityCountry, data);
+    });
 }
+
+// Function to display weather data from weatherAPI
+function displayData(cityName, cityCountry, data) {
+    displayToday(cityName, cityCountry, data.current, data.timezone);
+    displayForecast(data.daily, data.timezone)
+}
+
+
+
