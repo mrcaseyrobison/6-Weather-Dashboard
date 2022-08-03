@@ -14,6 +14,13 @@ const searchHistory = document.getElementById("search-history");
 dayjs.extend(window.dayjs_plugin_utc);
 dayjs.extend(window.dayjs_plugin_timezone);
 
+// Search on button click 
+function citySearch(event) {
+    let search = userInput.value.trim();
+    fetchCoords(search);
+    userInput.value = '';
+}
+
 // Display past searches in a list
 function displaySearchHistory() {
     searchHistory.innerHTML ="";
@@ -28,13 +35,6 @@ for (let i = userSearchHistory.length; i >= 0; i--) {
     historyBtn.textContent = userSearchHistory[i];
     searchHistory.append[historyBtn];
     }
-}
-
-// Search on button click 
-function citySearch(event) {
-    let search = userInput.value.trim();
-    fetchCoords(search);
-    userInput.value = '';
 }
 
 // Save search history to local storage and to display it
@@ -145,4 +145,56 @@ function renderTodayWeather(cityName, cityCountry, weather, timezone) {
     todayWeather.append(cityNameEl, weatherIcon, tempEl, windEl, humidityEl, uvIndexEl);
     } 
     
+    // Fetch 5-Day Forecast
+    function displayForecast(forecast, timezone) {
+        let forecastStart = dayjs().tz(timezone).add(1, 'day').startOf('day').unix();
+        let forecastEnd = dayjs().tz(timezone).add(6, 'day').startOf('day').unix();
 
+        let fiveDayHeaderEl = document.createElement('h4');
+        fiveDayHeaderEl.setAttribute('class', 'col-12');
+        weatherForecast.innerHTML="";
+        fiveDayHeaderEl.textContent = "5-Day Forecast";
+        weatherForecast.append(fiveDayHeaderEl);
+
+        // For loop to cycle through data
+        for (let i = 0; i < forecast.length; i++) {
+            if (forecast[i].dt >= forecastStart && forecast[i].dt < forecastEnd) {
+                renderForecastCard(forecast[i], timezone);
+            }
+        }
+    }
+
+    // Render Forecast Cards
+    function displayForecastCard(forecast, timezone) {
+        let date = forecast.dt;
+        let iconURL = `https://openweathermap.org/img/w/${forecast.weather[0].icon}.png`;
+        let iconDescription = forecast.weather[0].description;
+        let forecastTemp = forecast.temp.day;
+        let {humidity} = forecast;
+        let forecastWind = forecast.wind.speed;
+        
+        let col = document.createElement('div');
+        let card = document.createElement('div');
+        let cardBody = document.createElement('div');
+        let cardTitle = document.createElement('h4');
+        let weatherIcon = document.createElement('img');
+        let tempEl = document.createElement('p');
+        let windEl = document.createElement('p');
+        let humidityEl = document.createElement('p');
+
+        col.append(card);
+        card.append(cardBody);
+        cardBody.append(cardBody, weatherIcon, tempEl, windEl, humidityEl);
+
+        col.setAttribute('class', 'ol-md no gutters forecast-card');
+        card.setAttribute('class', 'card bg-primary h-100 text-white');
+        cardBody.setAttribute('class', 'card-bdy p-2');
+        cardTitle.setAttribute('class', 'card-text');
+        tempEl.textContent = `Temp: ${forecastTemp} F`;
+        windEl.textContent = `Wind Speed: ${forecastWind} MPH`;
+        humidityEl.textContent = `${humidity} %`;
+
+        weatherForecast.append(col);
+    }
+
+    
