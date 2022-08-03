@@ -37,7 +37,7 @@ function citySearch(event) {
     userInput.value = '';
 }
 
-// Add search history to local storage and to display it
+// Save search history to local storage and to display it
 function writeHistory(search) {
     if(userSearchHistory.indexOf(search) !== -1){
         return;
@@ -74,7 +74,7 @@ function fetchCoords(search) {
             let lon = cityData.lon;
             let cityCountry = cityData.country;
             writeHistory(search);
-            fetchWeather(cityName, cityCountry, lat, long);
+            fetchWeather(cityName, cityCountry, lat, lon);
         }
     })
 }
@@ -97,5 +97,52 @@ function displayData(cityName, cityCountry, data) {
     displayForecast(data.daily, data.timezone)
 }
 
+// Function to render HTML from data
+function renderTodayWeather(cityName, cityCountry, weather, timezone) {
+    let data = dayjs().tz(timezone).format('MM/DD/YYYY');
+    // Store data from API to variables
+    let temp = weather.temp;
+    let iconURL = `https://openweathermap.org/img/w/${weather.weather[0].icon}.png`;
+    let iconDescription = weather.weather[0].description || weather[0].main;
+    let wind = weather.wind_speed;
+    let humidity = weather.humidity;
+    let uvIndex = weather.uvi;
 
+    // Create elements from data
+    let cityNameEl = document.createElement('h2');
+    let tempEl = document.createElement('p');
+    let weatherIcon = document.createElement('img');
+    let windEl = document.createElement('p');
+    let humidityEl = document.createElement('p');
+    let uvIndexEl = document.createElement('p');
+    let uvBadge = document.createElement('button');
+
+    // UVI badges
+    weatherIcon.setAttribute('src', iconURL);
+    weatherIcon.setAttribute('alt', iconDescription);
+    weatherIcon.setAttribute('class', 'weather-img');
+    uvBadge.classList.add('btn', 'btn-sm');
+
+    if (uvIndex < 3) {
+        uvBadge.classList.add('btn-success');
+    } else if (uvIndex < 7) {
+        uvBadge.classList.add('btn-warning');
+    } else {
+        uvBadge.classList.add('btn-danger')
+    }
+
+    // Render card elements to HTML
+    cityNameEl.textContent = `Current Weather for ${cityName}, ${cityCountry} ($${data})`;
+    tempEl.textContent = `Temperature: ${temp} F`;
+    windEl.textContent = `Wind Speed: ${wind} MPH`;
+    humidityEl.textContent = `Humidity: ${humidity}%`;
+    uvIndexEl.textContent = `UV Index: `;
+    uvBadge.textContent = uvIndex;
+    uvIndexEl.append(uvBadge);
+
+    // Use append to dynamically display data
+    todayWeather.innerHTML = "";
+    todayWeather.append(cityNameEl, weatherIcon, tempEl, windEl, humidityEl, uvIndexEl);
+    } 
+    
 
