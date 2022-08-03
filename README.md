@@ -30,4 +30,7 @@ THEN I am again presented with current and future conditions for that city
 
 ## GitHub Repo
 
+[Repository Link](https://github.com/mrcaseyrobison/6-Weather-Dashboard)
 ## Deployed Application
+
+[Deployed Application](https://mrcaseyrobison.github.io/6-Weather-Dashboard/)
