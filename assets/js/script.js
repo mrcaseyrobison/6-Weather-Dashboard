@@ -168,7 +168,7 @@ function displayForecastCard(forecast, timezone) {
     var iconDescription = forecast.weather[0].description;
     var forecastTemp = forecast.temp.day;
     var { humidity } = forecast;
-    var forecastWind = forecast.wind.speed;
+    var forecastWind = forecast.wind_speed;
 
     var col = document.createElement("div");
     var card = document.createElement("div");
@@ -181,7 +181,7 @@ function displayForecastCard(forecast, timezone) {
 
     col.append(card);
     card.append(cardBody);
-    cardBody.append(cardBody, weatherIcon, tempEl, windEl, humidityEl);
+    cardBody.append(cardTitle, weatherIcon, tempEl, windEl, humidityEl);
 
     col.setAttribute("class", "ol-md no gutters forecast-card");
     card.setAttribute("class", "card bg-primary h-100 text-white");
